@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A36EBDD72A57A3ED00B131A7 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = A36EBDD62A57A3ED00B131A7 /* URLImage */; };
+		A36EBDD92A57A3ED00B131A7 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = A36EBDD82A57A3ED00B131A7 /* URLImageStore */; };
+		A36EBDDB2A57AA7C00B131A7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EBDDA2A57AA7C00B131A7 /* Model.swift */; };
+		A36EBDDD2A57AA9500B131A7 /* Api Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EBDDC2A57AA9400B131A7 /* Api Services.swift */; };
+		A36EBDE02A57B03C00B131A7 /* ImageRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EBDDF2A57B03C00B131A7 /* ImageRender.swift */; };
+		A36EBDE22A57B3C300B131A7 /* PostDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36EBDE12A57B3C300B131A7 /* PostDetail.swift */; };
 		A3AB62472A56A40300A2C403 /* ciapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AB62462A56A40300A2C403 /* ciapApp.swift */; };
 		A3AB62492A56A40300A2C403 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AB62482A56A40300A2C403 /* ContentView.swift */; };
 		A3AB624B2A56A40800A2C403 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3AB624A2A56A40800A2C403 /* Assets.xcassets */; };
@@ -15,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A36EBDDA2A57AA7C00B131A7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		A36EBDDC2A57AA9400B131A7 /* Api Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Api Services.swift"; sourceTree = "<group>"; };
+		A36EBDDF2A57B03C00B131A7 /* ImageRender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRender.swift; sourceTree = "<group>"; };
+		A36EBDE12A57B3C300B131A7 /* PostDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetail.swift; sourceTree = "<group>"; };
 		A3AB62432A56A40300A2C403 /* ciap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ciap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3AB62462A56A40300A2C403 /* ciapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ciapApp.swift; sourceTree = "<group>"; };
 		A3AB62482A56A40300A2C403 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -28,12 +38,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A36EBDD92A57A3ED00B131A7 /* URLImageStore in Frameworks */,
+				A36EBDD72A57A3ED00B131A7 /* URLImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A36EBDDE2A57B02B00B131A7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A36EBDDF2A57B03C00B131A7 /* ImageRender.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		A3AB623A2A56A40200A2C403 = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +73,7 @@
 		A3AB62452A56A40300A2C403 /* ciap */ = {
 			isa = PBXGroup;
 			children = (
+				A36EBDDE2A57B02B00B131A7 /* Utils */,
 				A3AB62562A56A6F200A2C403 /* Model */,
 				A3AB62552A56A6E700A2C403 /* View */,
 				A3AB62542A56A6D300A2C403 /* Web Service */,
@@ -75,6 +96,7 @@
 		A3AB62542A56A6D300A2C403 /* Web Service */ = {
 			isa = PBXGroup;
 			children = (
+				A36EBDDC2A57AA9400B131A7 /* Api Services.swift */,
 			);
 			path = "Web Service";
 			sourceTree = "<group>";
@@ -83,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				A3AB62572A56AA7D00A2C403 /* Profile.swift */,
+				A36EBDE12A57B3C300B131A7 /* PostDetail.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -90,6 +113,7 @@
 		A3AB62562A56A6F200A2C403 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A36EBDDA2A57AA7C00B131A7 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -110,6 +134,10 @@
 			dependencies = (
 			);
 			name = ciap;
+			packageProductDependencies = (
+				A36EBDD62A57A3ED00B131A7 /* URLImage */,
+				A36EBDD82A57A3ED00B131A7 /* URLImageStore */,
+			);
 			productName = ciap;
 			productReference = A3AB62432A56A40300A2C403 /* ciap.app */;
 			productType = "com.apple.product-type.application";
@@ -138,6 +166,9 @@
 				Base,
 			);
 			mainGroup = A3AB623A2A56A40200A2C403;
+			packageReferences = (
+				A36EBDD52A57A3ED00B131A7 /* XCRemoteSwiftPackageReference "url-image" */,
+			);
 			productRefGroup = A3AB62442A56A40300A2C403 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -164,9 +195,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A36EBDE22A57B3C300B131A7 /* PostDetail.swift in Sources */,
 				A3AB62492A56A40300A2C403 /* ContentView.swift in Sources */,
 				A3AB62582A56AA7D00A2C403 /* Profile.swift in Sources */,
+				A36EBDDD2A57AA9500B131A7 /* Api Services.swift in Sources */,
 				A3AB62472A56A40300A2C403 /* ciapApp.swift in Sources */,
+				A36EBDDB2A57AA7C00B131A7 /* Model.swift in Sources */,
+				A36EBDE02A57B03C00B131A7 /* ImageRender.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +400,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A36EBDD52A57A3ED00B131A7 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A36EBDD62A57A3ED00B131A7 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A36EBDD52A57A3ED00B131A7 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+		A36EBDD82A57A3ED00B131A7 /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A36EBDD52A57A3ED00B131A7 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A3AB623B2A56A40200A2C403 /* Project object */;
 }
