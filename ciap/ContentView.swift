@@ -9,20 +9,29 @@ struct ContentList: View {
             NavigationLink(destination: PostDetail(post: post, person: dataViewModel.person(for: post))) {
                 VStack(alignment: .leading) {
                     HStack {
-                        HStack {
+                        VStack {
                             URLImage(urlString: dataViewModel.person(for: post)?.photouser ?? "")
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 32, height: 32)
                                 .cornerRadius(52)
-
-                            Text(dataViewModel.person(for: post)?.name ?? "")
-                                .font(.headline)
+                            
+                            Image("vline")
+                                .frame(maxWidth: .infinity)
+                                .frame(width: 2)
+                            
                         }
-                        Text(post.date)
-                            .font(.headline)
+                        VStack(alignment: .leading){
+                            HStack{
+                                Text(dataViewModel.person(for: post)?.name ?? "")
+                                    .font(.headline)
+//                                Text(post.date)
+//                                    .font(.headline)
+                            }
+                            Text(post.ciap)
+                                .foregroundColor(.secondary)
+                        }
                     }
-                    Text(post.ciap)
-                        .foregroundColor(.secondary)
+                    
                 }
 //                    .padding()
             }
