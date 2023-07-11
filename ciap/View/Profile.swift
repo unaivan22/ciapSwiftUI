@@ -25,7 +25,7 @@ struct ProfileDetail: View {
                             VStack(alignment:.leading){
                                 Text("Unaivan")
                                     .font(.custom("Manrope-Medium", size: 20))
-                                Text("Prototyper")
+                                Text("@unaivan")
                                     .font(.custom("Manrope-Regular", size: 14))
                             }
                             
@@ -86,16 +86,16 @@ struct ProfileDetail: View {
                         }
                     }
 
-                    NavigationLink(destination:About()) {
-                        HStack(spacing:20){
-                            Image(systemName: "bag")
-                                .frame(width:46, height:46)
-                                .cornerRadius(10)
-                                .foregroundColor(Color.gray)
-                                .font(.system(size: 24))
-                            Text("House for Work")
-                        }
-                    }
+//                    NavigationLink(destination:About()) {
+//                        HStack(spacing:20){
+//                            Image(systemName: "bag")
+//                                .frame(width:46, height:46)
+//                                .cornerRadius(10)
+//                                .foregroundColor(Color.gray)
+//                                .font(.system(size: 24))
+//                            Text("House for Work")
+//                        }
+//                    }
                     
                 }
                 
@@ -137,7 +137,7 @@ struct ProfileDetail: View {
                     
                 }
             }
-            .navigationBarTitle("Profile")
+            .navigationBarTitle("Setting")
         }
     }
 }

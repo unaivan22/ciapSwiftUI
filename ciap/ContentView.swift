@@ -1,14 +1,14 @@
 import SwiftUI
+import URLImage
 
 struct ContentList: View {
     @ObservedObject var dataViewModel = DataViewModel()
-    
     
     var body: some View {
         List(dataViewModel.posts) { post in
             NavigationLink(destination: PostDetail(post: post, person: dataViewModel.person(for: post))) {
                 VStack(alignment: .leading) {
-                    HStack {
+                    HStack(alignment: .top){
                         VStack {
                             URLImage(urlString: dataViewModel.person(for: post)?.photouser ?? "")
                                 .aspectRatio(contentMode: .fill)
@@ -16,19 +16,61 @@ struct ContentList: View {
                                 .cornerRadius(52)
                             
                             Image("vline")
-                                .frame(maxWidth: .infinity)
-                                .frame(width: 2)
+//                                .frame(maxWidth: .infinity)
+//                                .frame(width: 2)
+                                .frame(height: .infinity, alignment: .top)
                             
                         }
                         VStack(alignment: .leading){
                             HStack{
                                 Text(dataViewModel.person(for: post)?.name ?? "")
-                                    .font(.headline)
+                                    .font(.system(size: 16))
+                                    .bold()
 //                                Text(post.date)
 //                                    .font(.headline)
                             }
                             Text(post.ciap)
                                 .foregroundColor(.secondary)
+                                .font(.system(size: 16))
+                        }
+                    }
+                    HStack{
+                        HStack(spacing: -13){
+                            URLImage(urlString: post.thumbhs) .aspectRatio(contentMode: .fill)
+                                .frame(width: 24, height: 24)
+                                .clipShape(Circle())
+                            
+                            URLImage(urlString: post.thumbhs) .aspectRatio(contentMode: .fill)
+                                .frame(width: 24, height: 24)
+                                .clipShape(Circle())
+                            
+                            URLImage(urlString: post.thumbhs) .aspectRatio(contentMode: .fill)
+                                .frame(width: 24, height: 24)
+                                .clipShape(Circle())
+
+                        }
+                        HStack(spacing: 24){
+                            HStack(spacing: 2){
+                                Image(systemName: "heart")
+                                Text("\(post.likes)")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 14))
+                            }.frame(maxWidth: .infinity, alignment: .leading)
+                            HStack(spacing: 2){
+                                Image(systemName: "arrow.2.squarepath")
+                                Text("\(post.respeech)")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 14))
+                            }.frame(maxWidth: .infinity, alignment: .leading)
+                            HStack(spacing: 2){
+                                Image(systemName: "message")
+                                Text("\(post.comments)")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 14))
+                            }.frame(maxWidth: .infinity, alignment: .leading)
+                            HStack(spacing: 2){
+                                Image(systemName: "paperplane")
+                            }
                         }
                     }
                     
@@ -67,24 +109,25 @@ struct Home : View {
                         Button(action: {
                             isShowingPageSearchDetail = true
                         }) {
-                            Image(systemName: "magnifyingglass.circle.fill").foregroundColor(.gray)
-                                    .font(.system(size: 24))
+                            Image("una")
+                                .resizable()
+                                .frame(width: 30.0, height: 30.0)
+                                .clipShape(Circle())
                         }
                         
                     }
                     
                     ToolbarItem(placement: .principal) {
                         VStack{
-                            Image("Ciapciap")
+                            Image("Speech")
                                 .frame(width: 200, height: 30, alignment: .center)
                         }
                     }
 
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack(spacing: 2){
-                            Image("sort")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 18))
+                            Text("Post")
+                                .foregroundColor(.blue)
                         }
                     }
             }.sheet(isPresented: $isShowingPageSearchDetail) {
@@ -101,7 +144,7 @@ struct ContentView: View {
             TabView(selection: $selectedTab) {
                 Home()
                     .tabItem {
-                        Image("homeIcon")
+                        Image(systemName: "house")
                             .renderingMode(.template)
                             .environment(\.symbolVariants, .none)
                         Text("Home")
@@ -109,26 +152,26 @@ struct ContentView: View {
                 
                 Home()
                     .tabItem {
-                        Image("homeIcon")
+                        Image(systemName: "magnifyingglass")
                             .renderingMode(.template)
                             .environment(\.symbolVariants, .none)
-                        Text("History")
+                        Text("Search")
                     }.tag(1)
                 
                 Home()
                     .tabItem {
-                        Image("homeIcon")
+                        Image(systemName: "bell")
                             .renderingMode(.template)
                             .environment(\.symbolVariants, .none)
-                        Text("Saved")
+                        Text("Notification")
                     }.tag(2)
                 
                 ProfileDetail()
                     .tabItem {
-                        Image("profile")
+                        Image(systemName: "gear")
                             .renderingMode(.template)
                             .environment(\.symbolVariants, .none)
-                        Text("Profile")
+                        Text("Setting")
                     }.tag(3)
             }
             .accentColor(.black)

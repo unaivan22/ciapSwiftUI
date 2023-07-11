@@ -7,17 +7,6 @@
 
 import Foundation
 
-//struct Post: Codable, Identifiable {
-//    let id: Int
-//    let background: String
-//    let fontbackground: String
-//    let date: String
-//    let fav: Int
-//    let ciap: String
-//    let loved: Bool
-//}
-
-
 struct Person: Codable, Identifiable {
     let id: Int
     let name: String
@@ -30,9 +19,13 @@ struct Post: Codable, Identifiable, Comparable {
     let background: String
     let fontbackground: String
     let date: String
-    let fav: Int
     let ciap: String
+    let fav: Int
     let loved: Bool
+    let thumbhs: String
+    let likes: Int
+    let respeech: Int
+    let comments: Int
     
     static func < (lhs: Post, rhs: Post) -> Bool {
         let dateFormatter = DateFormatter()
