@@ -4,6 +4,23 @@ import URLImage
 struct ContentList: View {
     @ObservedObject var dataViewModel = DataViewModel()
     
+    func formatNumber(_ number: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 1
+        
+        if number >= 1000000 {
+            let millionNumber = Double(number) / 1000000.0
+            return "\(formatter.string(from: NSNumber(value: millionNumber)) ?? "")M"
+        } else if number >= 1000 {
+            let thousandNumber = Double(number) / 1000.0
+            return "\(formatter.string(from: NSNumber(value: thousandNumber)) ?? "")K"
+        } else {
+            return "\(number)"
+        }
+    }
+    
+    
     var body: some View {
         List(dataViewModel.posts) { post in
             NavigationLink(destination: PostDetail(post: post, person: dataViewModel.person(for: post))) {
@@ -34,7 +51,7 @@ struct ContentList: View {
                                 .font(.system(size: 16))
                         }
                     }
-                    HStack{
+                    HStack(spacing: 6){
                         HStack(spacing: -13){
                             URLImage(urlString: post.thumbhs) .aspectRatio(contentMode: .fill)
                                 .frame(width: 24, height: 24)
@@ -52,26 +69,27 @@ struct ContentList: View {
                         HStack(spacing: 24){
                             HStack(spacing: 2){
                                 Image(systemName: "heart")
-                                Text("\(post.likes)")
+                                Text(formatNumber(post.likes))
                                     .foregroundColor(.black)
                                     .font(.system(size: 14))
                             }.frame(maxWidth: .infinity, alignment: .leading)
                             HStack(spacing: 2){
                                 Image(systemName: "arrow.2.squarepath")
-                                Text("\(post.respeech)")
+                                Text(formatNumber(post.respeech))
                                     .foregroundColor(.black)
                                     .font(.system(size: 14))
                             }.frame(maxWidth: .infinity, alignment: .leading)
                             HStack(spacing: 2){
                                 Image(systemName: "message")
-                                Text("\(post.comments)")
+//                                Text("\(post.responseCount)")
+                                Text(formatNumber(post.responseCount))
                                     .foregroundColor(.black)
                                     .font(.system(size: 14))
                             }.frame(maxWidth: .infinity, alignment: .leading)
                             HStack(spacing: 2){
                                 Image(systemName: "paperplane")
                             }
-                        }
+                        }.padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 15))
                     }
                     
                 }
@@ -119,7 +137,7 @@ struct Home : View {
                     
                     ToolbarItem(placement: .principal) {
                         VStack{
-                            Image("Speech")
+                            Image("speech")
                                 .frame(width: 200, height: 30, alignment: .center)
                         }
                     }
@@ -140,7 +158,7 @@ struct Home : View {
 struct ContentView: View {
     @State private var selectedTab = 0
     var body: some View {
-        VStack{
+//        NavigationView{
             TabView(selection: $selectedTab) {
                 Home()
                     .tabItem {
@@ -149,6 +167,7 @@ struct ContentView: View {
                             .environment(\.symbolVariants, .none)
                         Text("Home")
                     }.tag(0)
+                
                 
                 Home()
                     .tabItem {
@@ -175,7 +194,7 @@ struct ContentView: View {
                     }.tag(3)
             }
             .accentColor(.black)
-        }.background(Color.red)
+//        }.background(Color.red)
     }
 }
 
