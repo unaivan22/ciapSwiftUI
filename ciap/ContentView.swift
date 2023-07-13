@@ -40,9 +40,11 @@ struct ContentList: View {
                         }
                         VStack(alignment: .leading){
                             HStack{
-                                Text(dataViewModel.person(for: post)?.name ?? "")
-                                    .font(.system(size: 16))
-                                    .bold()
+                                NavigationLink(destination: UserSpeech(person: dataViewModel.person(for: post)!) /* Add the person argument here */) {
+                                    Text(dataViewModel.person(for: post)?.name ?? "")
+                                        .font(.system(size: 16))
+                                        .bold()
+                                }
 //                                Text(post.date)
 //                                    .font(.headline)
                             }
@@ -86,9 +88,9 @@ struct ContentList: View {
                                     .foregroundColor(.black)
                                     .font(.system(size: 14))
                             }.frame(maxWidth: .infinity, alignment: .leading)
-                            HStack(spacing: 2){
-                                Image(systemName: "paperplane")
-                            }
+//                            HStack(spacing: 2){
+//                                Image(systemName: "paperplane")
+//                            }
                         }.padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 15))
                     }
                     .padding(.bottom, 8)
@@ -159,7 +161,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             TabView(selection: $selectedTab) {
-                Home()
+                TestView()
                     .tabItem {
                         Image(systemName: "house")
                             .renderingMode(.template)
@@ -168,7 +170,7 @@ struct ContentView: View {
                     }.tag(0)
                 
                 
-                Home()
+                ProfileDetail()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                             .renderingMode(.template)
@@ -176,7 +178,7 @@ struct ContentView: View {
                         Text("Search")
                     }.tag(1)
                 
-                Home()
+                ProfileDetail()
                     .tabItem {
                         Image(systemName: "bell")
                             .renderingMode(.template)
@@ -202,4 +204,44 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
+
+
+struct TestView: View {
+    @StateObject private var dataViewModel = DataViewModel()
+
+        var body: some View {
+            NavigationView {
+                List(dataViewModel.posts) { post in
+                    VStack(alignment: .leading) {
+                        HStack {
+                            NavigationLink(destination: UserSpeech(person: dataViewModel.person(for: post)!) /* Add the person argument here */) {
+                                Text("Profile")
+                            }
+                            
+                            
+                            
+                        }
+                        // Additional post details
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        HStack {
+                            
+                            
+                            NavigationLink(destination: PostDetail(post: post, person: dataViewModel.person(for: post))) {
+                                Text("Post \(post.id)")
+                            }
+                            Spacer()
+                            
+                        }
+                        // Additional post details
+                    }
+                }
+                .navigationTitle("Posts")
+            }
+            .onAppear {
+                dataViewModel.fetchData()
+            }
+        }
 }
