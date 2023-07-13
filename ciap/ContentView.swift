@@ -91,14 +91,13 @@ struct ContentList: View {
                             }
                         }.padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 15))
                     }
-                    
+                    .padding(.bottom, 8)
+                    Divider()
                 }
-//                    .padding()
             }
-            .padding(.bottom, 8)
-            .padding(.top, 8)
+//            .padding(.top, 8)
             .listRowSeparator(.hidden)
-        }.listStyle(.inset)
+        }.listStyle(.plain)
         .navigationTitle("Posts")
         .frame(width: UIScreen.main.bounds.width)
     }
@@ -158,7 +157,7 @@ struct Home : View {
 struct ContentView: View {
     @State private var selectedTab = 0
     var body: some View {
-//        NavigationView{
+        NavigationView{
             TabView(selection: $selectedTab) {
                 Home()
                     .tabItem {
@@ -194,7 +193,7 @@ struct ContentView: View {
                     }.tag(3)
             }
             .accentColor(.black)
-//        }.background(Color.red)
+        }.background(Color.red)
     }
 }
 

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PostDetail: View {
-    @State private var showNavigationBar = true
     let post: Post
     let person: Person?
     
@@ -105,13 +104,13 @@ struct PostDetail: View {
                         Divider()
                     }
                     .padding(.vertical, 5)
-                }.toolbar(showNavigationBar ? .visible : .hidden)
+                }
             }
             
             
             
             Spacer()
-        }
+        }.toolbar(.hidden, for: .bottomBar)
         .padding()
     }
 }
