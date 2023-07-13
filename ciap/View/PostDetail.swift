@@ -10,26 +10,34 @@ import SwiftUI
 struct PostDetail: View {
     let post: Post
     let person: Person?
+    @ObservedObject var dataViewModel = DataViewModel()
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                HStack {
-                    URLImage(urlString: person?.photouser ?? "")
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 30, height: 30)
-                        .cornerRadius(50)
-                    
-                    VStack(alignment: .leading) {
-                        Text(person?.name ?? "")
-                            .font(.system(size: 16))
-                    }
+                NavigationLink(destination: UserSpeech(person: dataViewModel.person(for: post)!)) {
+                    VStack(alignment: .leading){
+                        HStack{
+                            URLImage(urlString: dataViewModel.person(for: post)?.photouser ?? "")
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 32, height: 32)
+                                .cornerRadius(52)
+                            
+                            Text(dataViewModel.person(for: post)?.name ?? "")
+                                .font(.system(size: 16))
+                                .bold()
+                        }
+                        HStack(){
+                            ///untukk set width
+                        }.frame(width: UIScreen.main.bounds.width - 40)
+                    }.frame(width: UIScreen.main.bounds.width)
                 }
+                
                 HStack{
                     Text(post.ciap)
                         .foregroundColor(.black)
                         .font(.system(size: 16))
-                }
+                }.padding(EdgeInsets(top: 9, leading: 15, bottom: 0, trailing: 15))
                 HStack(spacing: 24){
                     HStack(spacing: 2){
                         Image(systemName: "heart")
@@ -62,6 +70,7 @@ struct PostDetail: View {
                     Text("Responses:")
                         .font(.headline)
                         .padding(.top, 10)
+                        .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
                     
                     ForEach(responses, id: \.id) { response in
                         VStack(alignment: .leading) {
@@ -103,7 +112,7 @@ struct PostDetail: View {
                                 }
                             }
                             Divider()
-                        }
+                        }.padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
                         .padding(.vertical, 5)
                     }
                 }
