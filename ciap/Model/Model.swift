@@ -11,6 +11,9 @@ struct Person: Codable, Identifiable {
     let id: Int
     let name: String
     let photouser: String
+    let bio: String
+    let followers: Int
+    let following: Int
     let posts: [Post]
 }
 

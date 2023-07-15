@@ -37,7 +37,8 @@ struct ContentList: View {
 //                                .frame(width: 2)
                                 .frame(height: .infinity, alignment: .top)
                             
-                        }
+                        }.padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 5))
+
                         VStack(alignment: .leading){
                             HStack{
                                 NavigationLink(destination: UserSpeech(person: dataViewModel.person(for: post)!) /* Add the person argument here */) {
@@ -50,7 +51,7 @@ struct ContentList: View {
                             }
                             Text(post.ciap)
                                 .foregroundColor(.secondary)
-                                .font(.system(size: 16))
+                                .font(.system(size: 14))
                         }
                     }
                     HStack(spacing: 6){
@@ -138,8 +139,12 @@ struct Home : View {
                     
                     ToolbarItem(placement: .principal) {
                         VStack{
-                            Image("speech")
-                                .frame(width: 200, height: 30, alignment: .center)
+//                            Image("speech")
+//                                .frame(width: 200, height: 30, alignment: .center)
+                            Text("Speech")
+                                .foregroundColor(.black)
+                                .font(.system(size: 20))
+                                .bold()
                         }
                     }
 
@@ -161,7 +166,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             TabView(selection: $selectedTab) {
-                Home()
+                Search()
                     .tabItem {
                         Image(systemName: "house")
                             .renderingMode(.template)
